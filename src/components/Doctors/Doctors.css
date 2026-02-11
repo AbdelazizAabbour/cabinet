@@ -1,0 +1,132 @@
+/* === Doctors Section === */
+
+.doctors {
+    background: var(--bg);
+}
+
+.doctors__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+/* Doctor Card */
+.doctor-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--border);
+    transition: var(--transition-smooth);
+}
+
+.doctor-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.doctor-card__image {
+    position: relative;
+    height: 340px;
+    overflow: hidden;
+}
+
+.doctor-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.doctor-card:hover .doctor-card__image img {
+    transform: scale(1.05);
+}
+
+.doctor-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            transparent 40%,
+            rgba(0, 119, 182, 0.7) 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 24px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.doctor-card:hover .doctor-card__overlay {
+    opacity: 1;
+}
+
+.doctor-card__social {
+    display: flex;
+    gap: 12px;
+}
+
+.doctor-card__social-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 0.9rem;
+    transition: var(--transition-fast);
+}
+
+.doctor-card__social-link:hover {
+    background: var(--white);
+    color: var(--primary);
+    transform: translateY(-3px);
+}
+
+.doctor-card__info {
+    padding: 24px;
+    text-align: center;
+}
+
+.doctor-card__name {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.doctor-card__role {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--primary);
+    margin-bottom: 4px;
+}
+
+.doctor-card__specialty {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .doctors__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .doctors__grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .doctor-card__image {
+        height: 280px;
+    }
+}

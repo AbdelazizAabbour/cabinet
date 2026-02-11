@@ -1,0 +1,78 @@
+/* === SectionTitle Component === */
+
+.section-title {
+    margin-bottom: 60px;
+}
+
+.section-title--center {
+    text-align: center;
+}
+
+.section-title--left {
+    text-align: left;
+}
+
+.section-title__subtitle {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    background: linear-gradient(135deg, rgba(0, 180, 216, 0.1), rgba(46, 196, 182, 0.1));
+    padding: 6px 18px;
+    border-radius: var(--radius-full);
+    margin-bottom: 16px;
+}
+
+.section-title__heading {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.section-title--light .section-title__heading {
+    color: var(--white);
+}
+
+.section-title--light .section-title__subtitle {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary-light);
+}
+
+.section-title__accent {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: var(--radius-full);
+    margin-bottom: 20px;
+}
+
+.section-title--center .section-title__accent {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-title__desc {
+    max-width: 600px;
+    font-size: 1.05rem;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.section-title--center .section-title__desc {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-title--light .section-title__desc {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        margin-bottom: 40px;
+    }
+}

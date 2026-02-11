@@ -1,0 +1,50 @@
+.preloader {
+    position: fixed;
+    inset: 0;
+    background: #ffff;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.preloader__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.preloader__logo {
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+    /* Handled by GSAP */
+    transform: scale(0.8);
+    /* Handled by GSAP */
+}
+
+.preloader__logo-img {
+    width: 120%;
+    height: 120%;
+    object-fit: contain;
+}
+
+.preloader__text-wrapper {
+    overflow: hidden;
+}
+
+.preloader__text {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transform: translateY(100%);
+    /* Handled by GSAP */
+    opacity: 0;
+    /* Handled by GSAP */
+}

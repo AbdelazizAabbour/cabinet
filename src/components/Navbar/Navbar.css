@@ -1,0 +1,292 @@
+/* === Navbar === */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar--scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    /* Slightly stronger shadow */
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(216, 27, 96, 0.1);
+}
+
+.navbar__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    /* Increased gap */
+}
+
+/* Logo */
+.navbar__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10;
+}
+
+.navbar__logo-icon {
+    width: 48px;
+    /* Increased size */
+    height: 48px;
+    /* Increased size */
+    color: var(--primary);
+    transition: var(--transition-smooth);
+}
+
+.navbar__logo:hover .navbar__logo-icon {
+    color: var(--accent);
+    transform: rotate(90deg);
+}
+
+.navbar__logo-img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    transition: var(--transition-smooth);
+}
+
+.navbar__logo:hover .navbar__logo-img {
+    transform: scale(1.1);
+}
+
+.navbar__logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar__logo-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.3rem;
+    /* Increased font size */
+    color: #ffffff;
+    /* Dark text for visibility on light/white bg */
+    line-height: 1.1;
+    transition: var(--transition-fast);
+}
+
+.navbar--scrolled .navbar__logo-name {
+    color: var(--text);
+}
+
+.navbar__logo-tagline {
+    font-size: 0.75rem;
+    /* Slightly larger */
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--primary-light);
+    transition: var(--transition-fast);
+}
+
+.navbar--scrolled .navbar__logo-tagline {
+    color: var(--accent);
+}
+
+/* Links */
+.navbar__links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Increased gap */
+}
+
+.navbar__link {
+    padding: 10px 20px;
+    /* Increased padding */
+    font-size: 0.95rem;
+    /* Slightly larger font */
+    font-weight: 500;
+    color: #212121;
+    /* Ensure visible on white bg */
+    border-radius: var(--radius-full);
+    /* Adjusted radius */
+    transition: var(--transition-fast);
+    position: relative;
+    white-space: nowrap;
+}
+
+/* Fix visibility on dark hero if needed, but assuming white bg everywhere now */
+/* Let's make it smart: if not scrolled, text is WHITE if hero is dark? 
+   No, user said WHITE BG. So navbar should always be dark text? 
+   Wait, Hero has strict color rules. Usually Hero has dark bg? 
+   User said "White... background principal". 
+   Does Hero have white bg? Hero usually has image or distinct bg. 
+   If Hero is dark, navbar needs white text initially. 
+   Assuming navbar is over Hero image/video -> white text. 
+   Assuming navbar is over white content -> dark text. 
+   I'll stick to Dark Text for safety if bg is white mostly, OR standard: White init, Dark scrolled.
+   Let's keep White initial (as per existing logic) but ensure visibility.
+*/
+.navbar__link {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 24px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: var(--radius-full);
+    transition: transform 0.3s ease;
+}
+
+.navbar__link:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.navbar__link:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+    /* Subtle hover bg */
+}
+
+.navbar--scrolled .navbar__link {
+    color: var(--text-light);
+}
+
+.navbar--scrolled .navbar__link:hover {
+    color: var(--primary);
+    background: rgba(216, 27, 96, 0.08);
+}
+
+/* CTA */
+.navbar__cta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* Increased gap */
+}
+
+.navbar__phone {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    /* Larger font */
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    transition: var(--transition-fast);
+    white-space: nowrap;
+}
+
+.navbar--scrolled .navbar__phone {
+    color: var(--text);
+}
+
+.navbar__phone:hover {
+    color: var(--accent);
+}
+
+.navbar__btn {
+    padding: 12px 28px;
+    /* Larger button */
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+/* Mobile Toggle */
+.navbar__toggle {
+    display: none;
+    background: none;
+    font-size: 1.8rem;
+    /* Larger icon */
+    color: var(--white);
+    z-index: 10;
+    transition: var(--transition-fast);
+    padding: 4px;
+}
+
+.navbar--scrolled .navbar__toggle {
+    color: var(--text);
+}
+
+/* Mobile Menu - Improved */
+.navbar__mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    /* White mobile menu for clean look */
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.navbar__mobile--open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.navbar__mobile-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.navbar__mobile-link {
+    font-size: 1.5rem;
+    /* Larger font for mobile */
+    font-weight: 600;
+    color: var(--text);
+    padding: 12px 32px;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.navbar__mobile-link:hover {
+    color: var(--primary);
+    background: rgba(216, 27, 96, 0.05);
+    /* Rose subtle bg */
+    transform: scale(1.05);
+}
+
+.navbar__mobile-btn {
+    margin-top: 24px;
+    padding: 18px 48px;
+    font-size: 1.1rem;
+    box-shadow: 0 8px 30px rgba(216, 27, 96, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .navbar__links {
+        display: none;
+    }
+
+    .navbar__cta {
+        display: none;
+    }
+
+    .navbar__toggle {
+        display: block;
+    }
+}
