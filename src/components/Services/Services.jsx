@@ -50,21 +50,51 @@ const Services = () => {
     const containerRef = useRef()
 
     const handleMouseMove = (e) => {
-        // Advanced 3D tilt effect on hover
         const card = e.currentTarget
         const rect = card.getBoundingClientRect()
         const x = e.clientX - rect.left
         const y = e.clientY - rect.top
         const centerX = rect.width / 2
         const centerY = rect.height / 2
-        const rotateX = ((y - centerY) / centerY) * -5 // Max 5deg
-        const rotateY = ((x - centerX) / centerX) * 5
 
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`
+        const rotateX = ((y - centerY) / centerY) * -10
+        const rotateY = ((x - centerX) / centerX) * 10
+
+        gsap.to(card, {
+            rotateX: rotateX,
+            rotateY: rotateY,
+            scale: 1.05,
+            duration: 0.5,
+            ease: 'power3.out',
+            perspective: 1000
+        })
+
+        // Move the icon slightly more for parallax
+        const icon = card.querySelector('.service-card__icon')
+        gsap.to(icon, {
+            x: (x - centerX) * 0.1,
+            y: (y - centerY) * 0.1,
+            duration: 0.5,
+            ease: 'power3.out'
+        })
     }
 
     const handleMouseLeave = (e) => {
-        e.currentTarget.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)'
+        gsap.to(e.currentTarget, {
+            rotateX: 0,
+            rotateY: 0,
+            scale: 1,
+            duration: 0.7,
+            ease: 'elastic.out(1, 0.3)'
+        })
+
+        const icon = e.currentTarget.querySelector('.service-card__icon')
+        gsap.to(icon, {
+            x: 0,
+            y: 0,
+            duration: 0.7,
+            ease: 'elastic.out(1, 0.3)'
+        })
     }
 
     return (

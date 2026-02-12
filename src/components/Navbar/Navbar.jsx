@@ -62,8 +62,8 @@ const Navbar = () => {
                 <a href="#hero" className="navbar__logo" ref={logoRef}>
                     <img src={logo} alt="Cabinet Hannit" className="navbar__logo-img" />
                     <div className="navbar__logo-text">
-                        <span className="navbar__logo-name" >Cabinet Hannit</span>
-                        <span className="navbar__logo-tagline">Kinésithérapie</span>
+                        <span className="navbar__logo-name" >CHannit</span>
+                        <span className="navbar__logo-tagline" style={{ marginRight: '20px' }}>Kinésithérapie</span>
                     </div>
                 </a>
 

@@ -35,6 +35,29 @@ const Hero = () => {
         )
     }, [])
 
+    const handleMagnetic = (e) => {
+        const btn = e.currentTarget;
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        gsap.to(btn, {
+            x: x * 0.3,
+            y: y * 0.3,
+            duration: 0.4,
+            ease: "power3.out"
+        });
+    };
+
+    const resetMagnetic = (e) => {
+        gsap.to(e.currentTarget, {
+            x: 0,
+            y: 0,
+            duration: 0.7,
+            ease: "elastic.out(1, 0.3)"
+        });
+    };
+
     return (
         <section id="hero" className="hero" ref={heroRef}>
             {/* 3D Background */}
@@ -48,7 +71,6 @@ const Hero = () => {
                 <div className="hero__content" ref={contentRef}>
 
                     <div className="hero__badge" ref={badgeRef}>
-                        <span className="hero__badge-pulse" />
                         <span className="hero__badge-text">Innovation Médicale à Casablanca</span>
                     </div>
 
@@ -79,10 +101,17 @@ const Hero = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn btn-primary hero__btn hero__btn--glow"
+                            onMouseMove={handleMagnetic}
+                            onMouseLeave={resetMagnetic}
                         >
                             <FaCalendarAlt /> Prendre Rendez-vous
                         </a>
-                        <a href="#services" className="btn btn-glass hero__btn">
+                        <a
+                            href="#services"
+                            className="btn btn-glass hero__btn"
+                            onMouseMove={handleMagnetic}
+                            onMouseLeave={resetMagnetic}
+                        >
                             Découvrir nos soins
                         </a>
                     </div>

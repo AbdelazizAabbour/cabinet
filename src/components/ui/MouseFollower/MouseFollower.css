@@ -1,0 +1,37 @@
+.mouse-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary-color, #AD1457);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+}
+
+.mouse-aura {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(173, 20, 87, 0.2);
+    border: 1px solid rgba(173, 20, 87, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(2px);
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hide cursor dots when screen is too small or touch device */
+@media (max-width: 768px) {
+
+    .mouse-follower,
+    .mouse-aura {
+        display: none;
+    }
+}

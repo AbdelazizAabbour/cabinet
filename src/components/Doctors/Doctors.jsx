@@ -40,24 +40,28 @@ const Doctors = () => {
                 <ScrollReveal animation="stagger" staggerTime={0.2} className="doctors__grid">
                     {doctors.map((doc, i) => (
                         <div className="doctor-card" key={i}>
-                            <div className="doctor-card__image">
-                                <img src={doc.image} alt={doc.name} loading="lazy" />
-                                <div className="doctor-card__overlay">
-                                    <div className="doctor-card__social">
-                                        <a href="#" className="doctor-card__social-link" aria-label="LinkedIn">
-                                            <FaLinkedinIn />
-                                        </a>
-                                        <a href="#" className="doctor-card__social-link" aria-label="Email">
-                                            <FaEnvelope />
-                                        </a>
+                            <ScrollReveal animation={i % 2 === 0 ? 'reveal-left' : 'reveal-right'} delay={i * 0.1}>
+                                <div className="doctor-card__image-container">
+                                    <div className="doctor-card__image">
+                                        <img src={doc.image} alt={doc.name} loading="lazy" />
+                                        <div className="doctor-card__overlay">
+                                            <div className="doctor-card__social">
+                                                <a href="#" className="doctor-card__social-link" aria-label="LinkedIn">
+                                                    <FaLinkedinIn />
+                                                </a>
+                                                <a href="#" className="doctor-card__social-link" aria-label="Email">
+                                                    <FaEnvelope />
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="doctor-card__info">
-                                <h3 className="doctor-card__name">{doc.name}</h3>
-                                <span className="doctor-card__role">{doc.role}</span>
-                                <span className="doctor-card__specialty">{doc.specialty}</span>
-                            </div>
+                                <div className="doctor-card__info">
+                                    <h3 className="doctor-card__name">{doc.name}</h3>
+                                    <span className="doctor-card__role">{doc.role}</span>
+                                    <span className="doctor-card__specialty">{doc.specialty}</span>
+                                </div>
+                            </ScrollReveal>
                         </div>
                     ))}
                 </ScrollReveal>

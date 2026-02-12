@@ -45,6 +45,14 @@ const ScrollReveal = ({
             'blur-in': {
                 from: { opacity: 0, filter: 'blur(10px)', scale: 0.95 },
                 to: { opacity: 1, filter: 'blur(0px)', scale: 1 }
+            },
+            'reveal-left': {
+                from: { opacity: 0, x: -100, clipPath: 'inset(0 100% 0 0)' },
+                to: { opacity: 1, x: 0, clipPath: 'inset(0 0% 0 0)' }
+            },
+            'reveal-right': {
+                from: { opacity: 0, x: 100, clipPath: 'inset(0 0 0 100%)' },
+                to: { opacity: 1, x: 0, clipPath: 'inset(0 0% 0 0)' }
             }
         }
 

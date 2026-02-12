@@ -5,7 +5,7 @@ import {
 } from 'react-icons/fa'
 import ScrollReveal from '../ui/ScrollReveal'
 import './Footer.css'
-
+import logo from '../../assets/img/logo.png'
 const Footer = () => {
     return (
         <footer className="footer">
@@ -17,10 +17,7 @@ const Footer = () => {
                     <ScrollReveal animation="fade-up" className="footer__col">
                         <div className="footer__logo">
                             <div className="footer__logo-icon">
-                                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="4" y="16" width="32" height="8" rx="4" fill="currentColor" />
-                                    <rect x="16" y="4" width="8" height="32" rx="4" fill="currentColor" />
-                                </svg>
+                                <img src={logo} alt="Cabinet Hannit" className="navbar__logo-img" />
                             </div>
                             <span className="footer__logo-name">Cabinet Hannit</span>
                         </div>
