@@ -157,13 +157,22 @@
     /* Subtle hover bg */
 }
 
-.navbar--scrolled .navbar__link {
-    color: var(--text-light);
-}
-
 .navbar--scrolled .navbar__link:hover {
     color: var(--primary);
     background: rgba(216, 27, 96, 0.08);
+}
+
+.navbar__link--active {
+    color: var(--accent) !important;
+}
+
+.navbar__link--active::after {
+    transform: translateX(-50%) scaleX(1) !important;
+}
+
+.navbar__mobile-link--active {
+    color: var(--primary) !important;
+    background: rgba(216, 27, 96, 0.05);
 }
 
 /* CTA */

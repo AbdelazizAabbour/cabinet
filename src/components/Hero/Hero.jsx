@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
-import { FaWhatsapp, FaCalendarAlt, FaChevronDown } from 'react-icons/fa'
+import { FaCalendarAlt, FaChevronDown } from 'react-icons/fa'
 import ThreeBackground from '../ThreeBackground/ThreeBackground'
 import TextReveal from '../ui/TextReveal'
 import './Hero.css'
@@ -106,14 +107,14 @@ const Hero = () => {
                         >
                             <FaCalendarAlt /> Prendre Rendez-vous
                         </a>
-                        <a
-                            href="#services"
+                        <Link
+                            to="/services"
                             className="btn btn-glass hero__btn"
                             onMouseMove={handleMagnetic}
                             onMouseLeave={resetMagnetic}
                         >
                             Découvrir nos soins
-                        </a>
+                        </Link>
                     </div>
 
                 </div>

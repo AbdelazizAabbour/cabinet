@@ -6,7 +6,12 @@ import {
 import ScrollReveal from '../ui/ScrollReveal'
 import './Footer.css'
 import logo from '../../assets/img/logo.png'
+import { Link } from 'react-router-dom'
 const Footer = () => {
+    const handleLinkClick = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+
     return (
         <footer className="footer">
             <div className="footer__top-gradient" style={{ height: '4px', background: 'linear-gradient(90deg, var(--primary), var(--accent), var(--cta), var(--primary))', backgroundSize: '200% 100%', animation: 'footer-gradient 4s ease infinite' }} />
@@ -15,12 +20,12 @@ const Footer = () => {
                 <div className="footer__grid">
                     {/* Brand Column */}
                     <ScrollReveal animation="fade-up" className="footer__col">
-                        <div className="footer__logo">
+                        <Link to="/" className="footer__logo" onClick={handleLinkClick}>
                             <div className="footer__logo-icon">
                                 <img src={logo} alt="Cabinet Hannit" className="navbar__logo-img" />
                             </div>
                             <span className="footer__logo-name">Cabinet Hannit</span>
-                        </div>
+                        </Link>
                         <p className="footer__desc">
                             Votre partenaire de confiance pour une rééducation optimale et un bien-être durable à Casablanca.
                         </p>
@@ -36,11 +41,10 @@ const Footer = () => {
                     <ScrollReveal animation="fade-up" delay={0.1} className="footer__col">
                         <h4 className="footer__title" style={{ color: 'white' }}>Liens Rapides</h4>
                         <ul className="footer__links">
-                            <li><a href="#hero">Accueil</a></li>
-                            <li><a href="#about">À propos</a></li>
-                            <li><a href="#services">Services</a></li>
-                            <li><a href="#doctors">Équipe</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><Link to="/" onClick={handleLinkClick}>Accueil</Link></li>
+                            <li><Link to="/about" onClick={handleLinkClick}>À propos</Link></li>
+                            <li><Link to="/services" onClick={handleLinkClick}>Services</Link></li>
+                            <li><Link to="/contact" onClick={handleLinkClick}>Contact</Link></li>
                         </ul>
                     </ScrollReveal>
 
@@ -48,11 +52,11 @@ const Footer = () => {
                     <ScrollReveal animation="fade-up" delay={0.2} className="footer__col">
                         <h4 className="footer__title" style={{ color: 'white' }}>Nos Services</h4>
                         <ul className="footer__links">
-                            <li><a href="#services">Physiothérapie</a></li>
-                            <li><a href="#services">Rééducation fonctionnelle</a></li>
-                            <li><a href="#services">Traumatologie sportive</a></li>
-                            <li><a href="#services">Drainage lymphatique</a></li>
-                            <li><a href="#services">Massage thérapeutique</a></li>
+                            <li><Link to="/services" onClick={handleLinkClick}>Physiothérapie</Link></li>
+                            <li><Link to="/services" onClick={handleLinkClick}>Rééducation fonctionnelle</Link></li>
+                            <li><Link to="/services" onClick={handleLinkClick}>Traumatologie sportive</Link></li>
+                            <li><Link to="/services" onClick={handleLinkClick}>Drainage lymphatique</Link></li>
+                            <li><Link to="/services" onClick={handleLinkClick}>Massage thérapeutique</Link></li>
                         </ul>
                     </ScrollReveal>
 
@@ -61,15 +65,15 @@ const Footer = () => {
                         <h4 className="footer__title" style={{ color: 'white' }}    >Contact</h4>
                         <ul className="footer__contact-info">
                             <li>
-                                <FaMapMarkerAlt style={{ color: 'var(--primary)',marginRight: '5px' }} />
+                                <FaMapMarkerAlt style={{ color: 'var(--primary)', marginRight: '5px' }} />
                                 <span>32, Bd Chefchaouni, Casa</span>
-                            </li>   
+                            </li>
                             <li>
-                                <FaPhone style={{ color: 'var(--primary)',marginRight: '5px' }} /> 
+                                <FaPhone style={{ color: 'var(--primary)', marginRight: '5px' }} />
                                 <a href="tel:+212644574537">+212 644 574 537</a>
                             </li>
                             <li>
-                                <FaEnvelope style={{ color: 'var(--primary)',marginRight: '5px' }} />
+                                <FaEnvelope style={{ color: 'var(--primary)', marginRight: '5px' }} />
                                 <a href="mailto:contact@cabinethannit.ma">contact@cabinethannit.ma</a>
                             </li>
                         </ul>
@@ -80,7 +84,7 @@ const Footer = () => {
             <div className="footer__copyright">
                 <div className="container footer__copyright-content">
                     <p style={{ color: 'white' }}>&copy; {new Date().getFullYear()} Cabinet Hannit. Tous droits réservés.</p>
-                    <p className="footer__credits" style={{ color: 'white', fontSize: '0.8rem', fontWeight: '400',position: 'absolute', bottom: '0', right: '100px' , zIndex: '1' }}>
+                    <p className="footer__credits" style={{ color: 'white', fontSize: '0.8rem', fontWeight: '400', position: 'absolute', bottom: '0', right: '100px', zIndex: '1' }}>
                         Fait avec <FaHeartbeat className="footer__heart-icon" /> pour votre santé
                     </p>
                 </div>

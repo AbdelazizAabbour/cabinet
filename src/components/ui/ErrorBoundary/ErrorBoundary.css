@@ -1,0 +1,31 @@
+.error-boundary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: var(--bg);
+    text-align: center;
+}
+
+.error-boundary__content {
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid var(--border);
+}
+
+.error-boundary__content h2 {
+    color: var(--text);
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+}
+
+.error-boundary__content p {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}

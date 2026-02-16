@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { FiMenu, FiX, FiPhone } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
 import logo from '../../assets/img/logo.png' // User requested logo
@@ -12,6 +11,7 @@ const Navbar = () => {
     const logoRef = useRef()
     const linksRef = useRef([])
     const ctaRef = useRef()
+    const navigate = useNavigate()
 
     useEffect(() => {
         // Entrance animation
@@ -40,50 +40,46 @@ const Navbar = () => {
     }, [])
 
     const navLinks = [
-        { label: 'Accueil', href: '#hero' },
-        { label: 'À propos', href: '#about' },
-        { label: 'Services', href: '#services' },
-        { label: 'Pourquoi nous', href: '#why-us' },
-        { label: 'Équipe', href: '#doctors' },
-        { label: 'Contact', href: '#contact' },
+        { label: 'Accueil', path: '/' },
+        { label: 'À propos', path: '/about' },
+        { label: 'Services', path: '/services' },
+        { label: 'Contact', path: '/contact' },
     ]
 
-    const handleLinkClick = (e, href) => {
-        e.preventDefault()
+    const handleLinkClick = () => {
         setMenuOpen(false)
-        const el = document.querySelector(href)
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
+        window.scrollTo({ top: 0, behavior: 'smooth' })
     }
 
     return (
         <nav ref={navRef} className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
             <div className="container navbar__container">
-                {/* Logo */}
-                <a href="#hero" className="navbar__logo" ref={logoRef}>
+
+                <Link to="/" className="navbar__logo" ref={logoRef} onClick={handleLinkClick}>
                     <img src={logo} alt="Cabinet Hannit" className="navbar__logo-img" />
                     <div className="navbar__logo-text">
-                        <span className="navbar__logo-name" >CHannit</span>
+                        <span className="navbar__logo-name" >Cabinet Hannit</span>
                         <span className="navbar__logo-tagline" style={{ marginRight: '20px' }}>Kinésithérapie</span>
                     </div>
-                </a>
+                </Link>
 
-                {/* Desktop Nav Links */}
+
                 <ul className="navbar__links">
                     {navLinks.map((link, i) => (
-                        <li key={link.href}>
-                            <a
-                                href={link.href}
+                        <li key={link.path}>
+                            <NavLink
+                                to={link.path}
                                 ref={el => linksRef.current[i] = el}
-                                onClick={(e) => handleLinkClick(e, link.href)}
-                                className="navbar__link"
+                                onClick={handleLinkClick}
+                                className={({ isActive }) => `navbar__link ${isActive ? 'navbar__link--active' : ''}`}
                             >
                                 {link.label}
-                            </a>
+                            </NavLink>
                         </li>
                     ))}
                 </ul>
 
-                {/* CTA */}
+
                 <div className="navbar__cta" ref={ctaRef}>
                     <a href="tel:+212644574537" className="navbar__phone">
                         <FiPhone /> +212 644 574 537
@@ -98,7 +94,7 @@ const Navbar = () => {
                     </a>
                 </div>
 
-                {/* Mobile Toggle */}
+
                 <button
                     className="navbar__toggle"
                     onClick={() => setMenuOpen(!menuOpen)}
@@ -112,14 +108,14 @@ const Navbar = () => {
             <div className={`navbar__mobile ${menuOpen ? 'navbar__mobile--open' : ''}`}>
                 <ul className="navbar__mobile-links">
                     {navLinks.map((link) => (
-                        <li key={link.href}>
-                            <a
-                                href={link.href}
-                                onClick={(e) => handleLinkClick(e, link.href)}
-                                className="navbar__mobile-link"
+                        <li key={link.path}>
+                            <NavLink
+                                to={link.path}
+                                onClick={handleLinkClick}
+                                className={({ isActive }) => `navbar__mobile-link ${isActive ? 'navbar__mobile-link--active' : ''}`}
                             >
                                 {link.label}
-                            </a>
+                            </NavLink>
                         </li>
                     ))}
                 </ul>

@@ -1,11 +1,9 @@
-import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar'
-import Hero from './components/Hero/Hero'
-import About from './components/About/About'
-import Services from './components/Services/Services'
-import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs'
-import Doctors from './components/Doctors/Doctors'
-import Contact from './components/Contact/Contact'
+import Home from './pages/Home'
+import About from './pages/About'
+import Services from './pages/Services'
+import Contact from './pages/Contact'
 import Footer from './components/Footer/Footer'
 import Preloader from './components/Preloader/Preloader'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop'
@@ -17,19 +15,23 @@ function App() {
     useScroll()
 
     return (
-        <div className="app">
-            <MouseFollower />
-            <Preloader />
-            <Navbar />
-            <Hero />
-            <About />
-            <Services />
-            <WhyChooseUs />
-            <Doctors />
-            <Contact />
-            <Footer />
-            <ScrollToTop />
-        </div>
+        <Router>
+            <div className="app">
+                <MouseFollower />
+                <Preloader />
+                <Navbar />
+                <main>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/services" element={<Services />} />
+                        <Route path="/contact" element={<Contact />} />
+                    </Routes>
+                </main>
+                <Footer />
+                <ScrollToTop />
+            </div>
+        </Router>
     )
 }
 

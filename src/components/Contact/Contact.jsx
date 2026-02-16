@@ -11,19 +11,45 @@ const Contact = () => {
     const [formData, setFormData] = useState({
         name: '', email: '', phone: '', message: ''
     })
-    const [submitted, setSubmitted] = useState(false)
+    const [status, setStatus] = useState({
+        submitting: false,
+        submitted: false,
+        error: null
+    })
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        setSubmitted(true)
-        setTimeout(() => {
-            setSubmitted(false)
+        setStatus({ submitting: true, submitted: false, error: null })
+
+        try {
+            const response = await fetch('http://localhost:5000/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+
+            const data = await response.json()
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Une erreur est survenue lors de l\'envoi.')
+            }
+
+            setStatus({ submitting: false, submitted: true, error: null })
             setFormData({ name: '', email: '', phone: '', message: '' })
-        }, 4000)
+
+            setTimeout(() => {
+                setStatus(prev => ({ ...prev, submitted: false }))
+            }, 4000)
+        } catch (err) {
+            console.error('Contact form error:', err)
+            setStatus({ submitting: false, submitted: false, error: err.message })
+        }
     }
 
     return (
@@ -43,6 +69,12 @@ const Contact = () => {
                     {/* Form */}
                     <ScrollReveal animation="slide-right" delay={0.2} className="contact__form-wrapper">
                         <form className="contact__form" onSubmit={handleSubmit}>
+                            <h2 className="contact__form-title">Formulaire de Contact</h2>
+                            {status.error && (
+                                <div className="contact__error-message">
+                                    {status.error}
+                                </div>
+                            )}
                             <div className="contact__form-row">
                                 <div className="contact__field">
                                     <label htmlFor="name">Nom complet</label>
@@ -54,6 +86,7 @@ const Contact = () => {
                                         value={formData.name}
                                         onChange={handleChange}
                                         required
+                                        disabled={status.submitting}
                                     />
                                 </div>
                                 <div className="contact__field">
@@ -66,6 +99,7 @@ const Contact = () => {
                                         value={formData.email}
                                         onChange={handleChange}
                                         required
+                                        disabled={status.submitting}
                                     />
                                 </div>
                             </div>
@@ -79,6 +113,7 @@ const Contact = () => {
                                     placeholder="+212 6XX XXX XXX"
                                     value={formData.phone}
                                     onChange={handleChange}
+                                    disabled={status.submitting}
                                 />
                             </div>
 
@@ -92,20 +127,25 @@ const Contact = () => {
                                     value={formData.message}
                                     onChange={handleChange}
                                     required
+                                    disabled={status.submitting}
                                 />
                             </div>
 
                             <button
                                 type="submit"
-                                className={`btn btn-primary contact__submit ${submitted ? 'contact__submit--sent' : ''}`}
+                                className={`btn btn-primary contact__submit ${status.submitted ? 'contact__submit--sent' : ''}`}
+                                disabled={status.submitting}
                             >
-                                {submitted ? (
+                                {status.submitting ? (
+                                    <>Envoi en cours...</>
+                                ) : status.submitted ? (
                                     <>✓ Message Envoyé</>
                                 ) : (
                                     <><FaPaperPlane /> Envoyer le Message</>
                                 )}
                             </button>
                         </form>
+
                     </ScrollReveal>
 
                     {/* Info */}
